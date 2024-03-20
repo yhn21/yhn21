@@ -1,8 +1,8 @@
 ![logo](_media/ni.png)
 
-> Profile Framework for World of Warcraft and older expansions
+> 为《魔兽世界》及资料片版本设计的软件框架
 
-- Support for 3.3.5a, 4.3.4, 5.4.8 only
+- 专为3.3.5、4.3.4、5.4.8版本的《魔兽世界》提供支持
 
 [Getting Started](#ni-v2-legacy)
 

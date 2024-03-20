@@ -1,29 +1,20 @@
-- <img src="_media/start.png" alt="Start Icon" style="vertical-align: middle;"> **Getting Started**
+- <img src="https://gitee.com/smallzyc/ni/raw/master/docs/_media/start.png" alt="Start Icon" style="vertical-align: middle;"> **开始使用**
 
-  - [Quick start](getting-started/quickstart.md)
-  - [How to contribute](getting-started/how-to-contribute.md)
-  - [FAQ](getting-started/faq.md)
+  - [Quick start（快速开始）](getting-started/quickstart.md)
+  - [How to contribute（如何做出贡献）](getting-started/how-to-contribute.md)
+  - [FAQ（常见问题）](getting-started/faq.md)
 
-- <img src="_media/api.png" alt="API Icon" style="vertical-align: middle;"> **Api**
+- <img src="https://gitee.com/smallzyc/ni/raw/master/docs/_media/api.png" alt="API Icon" style="vertical-align: middle;"> **Api**
 
-  - [Debug](api/debug.md)
-  - [Generic](api/generic.md)
-  - [Healing](api/healing.md)
-  - [Members](api/members.md)
-  - [Memory](api/memory.md)
-  - [Object Manager](api/object-manager.md)
-  - [Player](api/player.md)
-  - [Power](api/power.md)
-  - [Rune](api/rune.md)
-  - [Spell](api/spell.md)
-  - [Unit](api/unit.md)
-  - [Vars](api/vars.md)
-
-- <img src="_media/useful.png" alt="Usefull Icon" style="vertical-align: middle;"> **Usefull**
-
-  - <a href="https://darhanger.github.io/rotations/">
-	<img src="_media/darhanger.png" alt="PvE Icon">PvE Profiles</a>
-  - <a href="https://discord.gg/4FC8rwy">
-	<img src="_media/pvp.png" alt="PvP Icon">PvP Profiles</a>
-  - <a href="https://discord.gg/xBFKJc6QRr">
-	<img src="_media/server.png" alt="Server Icon">Project Server</a>
+  - [Debug（调试）](api/debug.md)
+  - [Generic（通用）](api/generic.md)
+  - [Healing（治疗）](api/healing.md)
+  - [Members（团队）](api/members.md)
+  - [Memory（内存）](api/memory.md)
+  - [Object Manager（对象管理）](api/object-manager.md)
+  - [Player（玩家）](api/player.md)
+  - [Power（资源）](api/power.md)
+  - [Rune（符文）](api/rune.md)
+  - [Spell（技能）](api/spell.md)
+  - [Unit（单位）](api/unit.md)
+  - [Vars（变量）](api/vars.md)
