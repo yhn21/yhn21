@@ -1,532 +1,534 @@
 # Object Manager
 
-> All functions when used will be prepended with `ni.objectmanager`.
+> 所有函数在使用时将以 `ni.objectmanager` 作为前缀.
 
 ---
 
 ## contains
 
-Arguments:
+参数:
 
 - **object** `token|guid|name`
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the value passed is within the object manager table (The object is around you).
+如果传递的值在对象管理器表内（该对象在你周围）,则返回真或假.
 
 ```lua
-if ni.objectmanager.contains("The Lich King") then
-	--The Lich King is within our memory scope distance
+if ni.objectmanager.contains("巫妖王") then
+	--巫妖王在我的范围内
 end
 ```
 
 ## objectGUID
 
-Arguments:
+参数:
 
 - **object** `token|guid|name`
 
-Returns: `string`
+返回值: `string`
 
-Returns the objects GUID of the value passed, as long as they're within the object manager table.
+只要对象在对象管理器表中,就返回传递值的对象GUID.
 
 ```lua
-local lich_king = ni.objectmanager.objectGUID("The Lich King");
+local lich_king = ni.objectmanager.objectGUID("巫妖王");
 if lich_king ~= nil then
-	--The Lich King is within our memory scope distance, and we now have his GUID to work with on other functions.
+	--巫妖王在我的范围内,现在我们有了他的GUID,可以在其他函数中使用
 end
 ```
 
 ---
 
-> The object manager also features a set of functions and special way to provide an object oriented type programming for the lua. All of the way to access this feature is via `ni.objects`. Functions, variables and examples are as follows:
+> 对象管理器还提供了一组函数和特殊方式,为lua提供了一种面向对象类型的编程.访问此功能的所有方式都是通过 `ni.objects` . 函数、变量和示例如下:
 
 ## guid
 
-Type:
+类型:
 
 - **variable**
 
-Returns: `string`
+返回值: `string`
 
-This is the variable that returns the GUID of the object accessed.
+这是返回已访问对象GUID的变量.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() then
-	print(tar.guid) --Would print the GUID of the target
+	print(tar.guid) --将打印目标的GUID
 end
 ```
 
 ## name
 
-Type:
+类型:
 
 - **variable**
 
-Returns: `string`
+返回值: `string`
 
-This is the variable that returns the name of the object accessed.
+这是返回已访问对象名称的变量.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() then
-	print(tar.name) --Would print the name of the target
+	print(tar.name) --将打印目标的名称
 end
 ```
 
 ## type
 
-Type:
+类型:
 
 - **variable**
 
-Returns: `number`
+返回值: `number`
 
-This is the variable that returns the object type of the object accessed.
+这是返回已访问对象类型的变量.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() then
 	if tar.type == 3 then
-		--The object is a unit
+		--对象是一个单位
 	elseif tar.type == 4 then
-		--The object is a player
+		--对象是一个玩家
 	elseif tar.type == 5 then
-		--The object is a game object
+		--对象是一个游戏对象
 	elseif tar.type == 6 then
-		--The object is a dynamic object
+		--对象是一个动态对象
 	end
 end
 ```
 
 ## exists
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object is within your memory scope.
+如果对象存在可以被选中且可以攻击,则返回 true 或 false.
 
 ```lua
 local tar = ni.objects["focus"];
 if tar:exists() then
-	--focus object exists
+	--焦点对象存在
 end
 ```
 
 ## info
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-Returns: `multi-ret`
+返回值: `multi-ret`
 
-Returns detailed information about the object.
+返回有关对象的详细信息.
 
 ```lua
 local tar = ni.objects["focus"];
 if tar:exists() then
 	local x, y, z, facing, type, target, height = tar:info()
 	if target ~= 0 then
-		--We have the target GUID of the object.
+		--我们得到了焦点对象的目标GUID
 	end
 end
 ```
 
 ## hp
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-Returns: `number`
+返回值: `number`
 
-Returns the objects health percentage.
+返回对象的健康百分比.
 
 ```lua
 local tar = ni.objects["The Lich King"];
 if tar:exists() and tar:hp() < 20 then
-	--Object has less than 20% health
+	--对象的生命值低于20%
 end
 ```
 
 ## power
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-- **type** `string` _optional_
+- **type** `string` _可选参数_
 
-Returns: `number`
+返回值: `number`
 
-Returns the current percent of the objects power (e.g. mana, energy, focus, etc.).
+返回对象当前能量的百分比（例如法力、能量、集中等）.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() and tar:power("mana") >= 80 then
-	--Target has, or has more than, 80% mana
+	--目标的法力值达到或超过了80%
 end
 ```
 
 ## powermax
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-- **type** `string` _optional_
+- **type** `string` _可选参数_
 
-Returns: `number`
+返回值: `number`
 
-Returns the maximum of the objects power (e.g. mana, energy, focus, etc.).
+返回对象能量的最大值（例如法力值、能量值、集中值等）.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() and tar:powermax("mana") >= 20000 then
-	--Target has, or has more than, 20k mana
+	--目标的法力值达到或超过了20000
 end
 ```
 
 ## unit
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object is a unit.
+返回真（true）或假（false）,判断对象是否是一个单位.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() and tar:unit() then
-	--Object is a unit.
+	--对象是一个单位.
 end
 ```
 
 ## player
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object is a player.
+如果对象是玩家,则返回真（true）或假（false）.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() and tar:player() then
-	--Object is a player.
+	--对象是一个玩家.
 end
 ```
 
 ## canattack
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-- **string** `token|guid` _optional_
+- **string** `token|guid` _可选参数_
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object can attack the token specified, or player if empty.
+如果对象可以攻击指定的目标（或者如果未指定,则为玩家）,则返回真（true）或假（false）.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() and tar:canattack() then
-	--Object can attack the player.
+	--对象可以攻击玩家.
 end
 ```
 
 ## canassist
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-- **string** `token|guid` _optional_
+- **string** `token|guid` _可选参数_
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object can assist the token specified, or player if empty.
+如果对象可以协助指定的目标,或者如果未指定则默认协助玩家,则返回真（true）或假（false）.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() and tar:canassist() then
-	--Object can assist the player (They're friendly).
+	--对象可以协助玩家（它们是友好的）.
 end
 ```
 
 ## los
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-- **string** `token|guid` _optional_
+- **string** `token|guid` _可选参数_
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object is in line of sight to the token specified, or player if empty.
+如果对象与指定的目标之间存在视线,或者如果未指定则默认与玩家之间存在视线,则返回真（true）或假（false）.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() and tar:los() then
-	--Object is in line of sight to the player.
+	--对象与玩家之间存在视线.
 end
 ```
 
 ## cast
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
 - **string or number** `name|id`
 
-Returns: `void`
+返回值: `void`
 
-Function to cast a spell onto the object.
+函数用于对对象施放一个法术.
 
 ```lua
 local tar = ni.objects["The Lich King"];
 if tar:exists() and tar:los() then
-	tar:cast("Frost Bolt");
+	tar:cast("火球术");
+	--对对象施放火球术
 end
 ```
 
 ## castat
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
 - **string or number** `name|id`
 
-Returns: `void`
+返回值: `void`
 
-Function to cast a spell at the location of the object if they're in line of sight.
+如果对象处于视线内,就在对象所在位置施放一个法术的功能.
 
 ```lua
 local tar = ni.objects["The Lich King"];
 if tar:exists() then
-	tar:cast("Blizzard");
+	tar:cast("暴风雪");
+	--在对象正下方施放暴风雪
 end
 ```
 
 ## combat
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object is in combat.
+如果对象处于战斗状态,则返回真（true）,否则返回假（false）.
 
 ```lua
 local tar = ni.objects["The Lich King"];
 if tar:exists() and tar:combat() then
-	--Object is in combat.
+	--对象处于战斗状态.
 end
 ```
 
 ## isbehind
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-- **target** `token|guid` _optional_
-- **reverse** `boolean` _optional_
+- **target** `token|guid` _可选参数_
+- **reverse** `boolean` _可选参数_
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object is behind the token specified, or player if empty. If reverse is specified as true, it's the opposite direction (i.e. the player is behind the object).
+返回布尔值,表明对象是否位于指定标记之后,如果没有指定标记则默认为玩家.如果参数 `reverse` 被设置为真（true）,则方向相反（即玩家位于对象之后）.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() then
 	if tar:isbehind("player", true) then
-		--The player is behind the object.
+		--玩家在对象背后
 	end
 	if tar:isbehind() then
-		--The object is behind the player
+		--玩家在对象背后
 	end
 end
 ```
 
 ## isfacing
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-- **target** `token|guid` _optional_
-- **reverse** `boolean` _optional_
+- **target** `token|guid` _可选参数_
+- **reverse** `boolean` _可选参数_
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object is facing the token specified, or player if empty. If reverse is specified as true, it's the opposite direction (i.e. the player is facing the object).
+返回布尔值,指示对象是否面向指定的标记对象,如果未指定则默认为玩家.如果参数 `reverse` 被设置为真（true）,则意味着相反的方向（即玩家面向对象）.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() then
 	if tar:isfacing("player", true) then
-		--The player is facing the object.
+		--玩家面向对象
 	end
 	if tar:isfacing() then
-		--The object is facing the player
+		--对象面向玩家
 	end
 end
 ```
 
 ## distance
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-- **string** `token|guid` _optional_
+- **string** `token|guid` _可选参数_
 
-Returns: `number`
+返回值: `number`
 
-Returns the distance of the object to the token specified, or player if empty.
+返回对象与指定标记的距离,如果未指定标记则默认与玩家的距离.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() and tar:distance() < 3 then
-	--Object is within 3 yards of the player.
+	--对象与玩家的距离在3码以内.
 end
 ```
 
 ## range
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-- **string** `token|guid` _optional_
+- **string** `token|guid` _可选参数_
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the object is within 40 yards to the token specified, or player if empty.
+返回布尔值,判断对象是否在40码以内相对于指定的标记,若未指定则默认相对于玩家.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() and tar:range() then
-	--Object is within 40 yards of the player.
+	--对象与玩家的距离在40码以内.
 end
 ```
 
 ## creator
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-Returns: `string`
+返回值: `string`
 
-Returns the GUID of the objects creator if they have one.
+返回对象创建者的GUID（全局唯一标识符）,如果对象有创建者的话.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() then
 	local creator = tar:creator();
 	if creator then
-		--The object has a creator, and now we have their GUID
+		--对象有创建者,现在我们获取了他们的GUID
 	end
 end
 ```
 
 ## target
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-Returns: `string`
+返回值: `string`
 
-Returns the GUID of the objects target if they have one, otherwise "0x0000000000000000".
+返回对象目标的GUID（全局唯一标识符）,如果对象有目标的话；否则返回"0x0000000000000000".
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() then
 	local target = tar:target();
 	if UnitExists(target) then
-		--The object has a target, and now we have their GUID
+		--对象有一个目标,现在我们有了它们的GUID
 	end
 end
 ```
 
 ## location
 
-Type:
+类型:
 
 - **function**
 
-Arguments:
+参数:
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of the objects location along with their facing.
+返回一个包含对象位置及其朝向的表.
 
 ```lua
 local tar = ni.objects["target"];
 if tar:exists() then
 	local location = tar:location();
-	--Do something with the location.x, location.y, location.z and location.r of the object
+	--使用对象的location.x, location.y, location.z和location.r来做一些事情
 end
 ```
 
 ---
 
-> Another example of iterating the objects can be like what is within the fishing script. While iterating it this way, you can access all the above listed variables and functions the same. Example as follows:
+> 在钓鱼脚本中的迭代对象的另一个例子可以是像下面这样.通过这种方式迭代,你可以同样访问所有上面列出的变量和函数.示例如下:
 
 ```lua
 local playerguid = UnitGUID("player");

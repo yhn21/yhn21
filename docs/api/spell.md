@@ -1,19 +1,19 @@
 # Spell
 
-> All functions when used will be prepended with `ni.spell`.
+> 所有使用的函数将以 `ni.spell` 作为前缀 .
 
 ---
 
 ## available
 
-Arguments:
+参数:
 
 - **spell** `id|string`
-- **stutter** `boolean` _default: true_
+- **stutter** `boolean` _默认值: true_
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if specified spell is available to use. Includes checks such as:
+检查指定的法术是否可用.包括以下检查:
 
 - [`ni.spell.gcd`](api/spell.md#gcd)
 - [`ni.vars.combar.casting`](api/vars.md)
@@ -22,247 +22,196 @@ Checks if specified spell is available to use. Includes checks such as:
 - [`ni.player.powerraw`](api/player.md)
 - [`ni.player.hpraw`](api/player.md)
 
-!> [`ni.spell.available`](api/spell.md#available) is not the same as [`ni.spell.valid`](api/spell.md#valid).
+!> [`ni.spell.available`](api/spell.md#available) 与 [`ni.spell.valid`](api/spell.md#valid)不同.
 
 ```lua
-if ni.spell.available("Fear") then
-  -- Fear passess all the checks and is available
+if ni.spell.available("恐惧") then
+  -- 恐惧通过了检查,处于可用状态
 end
 ```
 
 ## cast
 
-Arguments:
+参数:
 
 - **spell** `id|string`
 - **target** `token|guid`
 
-Returns: `void`
+返回值: `void`
 
-Casts the specified spell. If the target is provided it'll cast on that target, otherwise spell wll be casted on self.
+施放指定的法术.如果提供了目标,将对那个目标施放；否则,法术将对自己施放.
 
 ```lua
-ni.spell.cast("Shadow Bolt", "target")
+ni.spell.cast("恐惧", "target")
 ```
 
 ## delaycast
 
-Arguments:
+参数:
 
 - **spell** `id|string`
 - **target** `token|guid`
-- **delay** `number` _optional_
+- **delay** `number` _可选参数_
 
-Returns: `boolean`
+返回值: `boolean`
 
-Just like cast, however you can specify delay, and if the time since it's last cast was over the delay, it'll cast the spell along with returning true. If it's under the delay, the function will return false.
+就像普通的施法一样,然而你可以指定延迟时间,如果自上次施法以来的时间超过了延迟,它将施放法术并返回true.如果时间小于延迟,函数将返回false.
 
 ```lua
-if ni.spell.delaycast("Shadow Bolt", "target", 1.5) then
-	--It's been more than 1.5 seconds since we last cast 1.5, so it cast
+if ni.spell.delaycast("恐惧", "target", 1.5) then
+	--自从上次施放恐惧以来已经超过1.5秒了,所以它施放了
 else
-	--Spell did not cast because it's been less than 1.5 seconds since last cast
+	--法术没有施放,因为自上次施放以来还不到1.5秒
 end
---Other usage just like normal cast, just to ensure it doesn't cast if under the delay time
+--其它用法就像普通施法一样,只是为了确保如果在延迟时间内不施放
 if true then
-	ni.spell.delaycast("Shadow Bolt", "target", 1.5)
+	ni.spell.delaycast("恐惧", "target", 1.5)
 end
 ```
 
-## bestaoeloc
-
-- **distance** `number`
-- **radius** `number`
-- **friendly** `boolean` _optional_
-- **minimumcount** `number` _optional_
-- **inc** `number` _optional_
-- **zindex_inc** `number` _optional_
-
-Returns: `X/Y/Z`
-
-This function uses the internal check for sweeping around the player to search for the best X/Y/Z coordinate to place an AoE at. The distance and radius are the only two required, the rest are optional. Friendly is to check for units you can assist if true, or that you can attack if false (default: false). minimumcount is the minimum number of units within the radius to be counted as a good location (default: 2). inc is for the incremental looping that is done, the higher the number the less efficient the scan is, but the quicker it is done; for example if a distance of 30 is passed and the increment is 1.5 it would go -30, -28.5, -27, -25.5 ... to +30 (default: 1). zindex_inc is for the readjustment to obtain a new Z for each position checked, meaning the point where the ground actually is, each point uses +increment and -increment from the players Z and uses the hit location as the new z (default: 20).
-
-```lua
-local x, y, z = ni.spells.bestaoeloc(30, 4, false, 6);
---This would return nil if there is no good location, otherwise x, y, z will be the best location to hit at least 6 mobs within a location that is at least 30 yards from the player and has a splash radius of 4 yards
-```
-
-## castharmfulatbest
-
-- **spell** `id|string`
-- **distance** `number`
-- **radius** `number`
-- **minimumcount** `number` _optional_
-- **inc** `number` _optional_
-- **zindex_inc** `number` _optional_
-
-Returns: `void`
-
-This function will cast the spell specified at the best location matching the requirements. See above for what each argument is.
-
-```lua
-ni.spell.cast("Hurricane", 36, 4, 4); --On a druid this would cast hurricane at the best location within 36 yards of the player that has at least 4 mobs to be hit
-```
-
-## casthelpfulatbest
-
-- **spell** `id|string`
-- **distance** `number`
-- **radius** `number`
-- **minimumcount** `number` _optional_
-- **inc** `number` _optional_
-- **zindex_inc** `number` _optional_
-
-Returns: `void`
-
-This function will cast the spell specified at the best location matching the requirements. See above for what each argument is.
-
-```lua
-ni.spell.cast("Healing Rain", 36, 4, 5); --On a shaman this would cast healing rain at the best location within 36 yards of the player that has at least 5 friendlies to be hit by the heal
-```
 
 ## castat
 
-Arguments:
+参数:
 
 - **spell** `id|string`
 - **target** `token|guid|mouse`
 - **offset** `number`
 
-Returns: `void`
+返回值: `void`
 
-Casts specified spell which required click on the ground (e.g. Death and Decay, Rain of Fire, Blizzard).
+施放需要点击地面的指定法术（例如,死亡凋零、火焰之雨、暴风雪）.
 
 ```lua
-ni.spell.castat("Rain of Fire", "target")
+ni.spell.castat("死亡凋零", "target")
 ```
 
 ## castatqueue
 
-Arguments:
+参数:
 
 - **spell** `id|string`
 - **target** `token|guid|mouse`
 
-Returns: `void`
+返回值: `void`
 
-Queues a specified spell to be casted on the ground once it's available.
+将指定的法术加入队列,在其可用时自动对地面施放.
 
 ```lua
-ni.spell.castatqueue("Blizzard", "target")
+ni.spell.castatqueue("死亡凋零", "target")
 ```
 
 ## castqueue
 
-Arguments:
+参数:
 
 - **spell** `id|string`
 - **target** `token|guid`
 
-Returns: `void`
+返回值: `void`
 
-Queues a specified spell to be casted once it's available.
+将指定法术加入队列,一旦它可用就立即施放.这种队列机制常用于确保在法术冷却完毕的一瞬间立刻施放,从而最大化效率和输出.
 
 ```lua
-ni.spell.castqueue("Fear", "target")
+ni.spell.castqueue("恐惧", "target")
 ```
 
 ## castspells
 
-Arguments:
+参数:
 
 - **spell** `id|string`
 - **target** `token|guid`
 
-Returns: `void`
+返回值: `void`
 
-Casts specified spells separated by pipe (`|`). If the target is provided it'll cast on that target, otherwise spells wll be casted on self. Does not work if spells more than one spell triggers global cooldown.
+施放由竖线(`|`)分隔的指定法术.如果指定了目标,则会对那个目标施放法术；否则,法术会施放在自身.如果多个法术触发全局冷却时间,这种方法则无法工作.
 
 ```lua
-ni.spell.castspells("Heroic Strike|Bloodthirst", "target")
+ni.spell.castspells("烈焰震级|风剪", "target")
 ```
 
 ## casttime
 
-Arguments:
+参数:
 
 - **spell** `id|string`
 
-Returns: `number`
+返回值: `number`
 
-Calculates the cast time of specified spell.
+计算指定法术的施放时间.
 
 ```lua
-local casttime = ni.spell.casttime("Immolate") -- 1.25
+local casttime = ni.spell.casttime("暗影箭") 
 ```
 
 ## cd
 
-Arguments:
+参数:
 
 - **spell** `id|string`
 
-Returns: `number`
+返回值: `number`
 
-Calculates specified spell's cooldown. If the spell is not on cooldown returns 0.
+计算指定法术的冷却时间.如果法术没有在冷却中,则返回0.
 
 ```lua
-if not ni.spell.cd(47891) then
-  -- Shadow Ward is not on cooldown
+if not ni.spell.cd("寒冰屏障") then
+  -- 寒冰屏障不在冷却中
 end
 ```
 
 ## gcd
 
-Arguments:
+参数:
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if global cooldown is triggered.
+检查是否触发了全局冷却时间（GCD）.
 
 ```lua
 if not ni.spell.gcd() then
-  -- Global cooldown is not active, we can do something
+  -- 全局冷却时间未激活,可以采取行动
 end
 ```
 
 ## id
 
-Arguments:
+参数:
 
 - **spellname** `string`
 
-Returns: `number|nil`
+返回值: `number|nil`
 
-Converts spell's name into spell id. If spell doesn't exist returns nil.
+将法术名称转换为法术ID.如果法术不存在则返回nil.
 
 ```lua
-local spellid = ni.spell.id("Life Tap") -- 57946
+local spellid = ni.spell.id("暗影烈焰") -- 返回值61290
 ```
 
 ## isinstant
 
-Arguments:
+参数:
 
 - **spell** `string|id`
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if passed spell is instant cast.
+检查传入的法术是否为瞬发法术.
 
 ```lua
-if ni.spell.isinstant(57946) then
-  -- Life Tap is instant spell
+if ni.spell.isinstant("生命分流") then
+  -- 生命分流是瞬发法术
 end
 ```
 
 ## stopcasting
 
-Arguments:
+参数:
 
-Returns: `void`
+返回值: `void`
 
-Stops casting.
+停止施法读条.
 
 ```lua
 ni.spell.stopcasting()
@@ -270,39 +219,57 @@ ni.spell.stopcasting()
 
 ## stopchanneling
 
-Arguments:
+参数:
 
-Returns: `void`
+返回值: `void`
 
-Stops channeling.
+停止引导读条.
 
 ```lua
 ni.spell.stopchanneling()
 ```
 
+
+## shouldinterrupt
+
+参数：
+
+- **target** `token|guid`
+- **shou** `number`
+
+返回值: `boolean`
+
+检查单位的施法进度.
+
+```lua
+if  ni.spell.shouldinterrupt("target", 35) then
+-- 目标施法进度大于等于35%的时候返回true,否则返回false
+end
+```
+
+
 ## valid
 
-Arguments:
+参数:
 
-- **spell** `id|string`
 - **target** `token|guid`
-- **facing** `boolean` _default: false_
-- **los** `boolean` _default: false_
-- **friendly** `boolean` _default: false_
+- **spell** `id|string`
+- **facing（面向目标）** `boolean` _默认值：假_
+- **los（是否有视野）** `boolean` _默认值：假_
+- **friendly（是否友善）** `boolean` _默认值：假_
 
-Returns: `boolean`
+返回值: `boolean`
 
-This functions ensures that a spell can be casted at specific target. It includes checks such as:
+此函数确保一个法术能够在特定目标上施放.它包括了如下的检查:
 
 !> [`ni.spell.valid`](api/spell.md#valid) is not the same as [`ni.spell.available`](api/spell.md#available).
-
 - [`ni.unit.exists`](api/unit.md#exists)
 - [`ni.player.los`](api/player.md#los)
 - [`ni.player.isfacing`](api/player.md#isfacing)
 - `IsSpellInRange`
 
 ```lua
-if ni.spell.valid("Fear", "target") then
-  -- Fear meets all of the critera to be valid
+if ni.spell.valid("target","恐惧",true,true,false) then
+  -- 玩家当前面向目标,对目标有视野,并且不判断目标是否是友善的,可以施放恐惧
 end
 ```

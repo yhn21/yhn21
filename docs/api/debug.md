@@ -1,36 +1,37 @@
 # Debug
 
-> All functions when used will be prepended with `ni.debug`.
+> 所有功能在使用时需要加上 `ni.debug` 前缀.
 
 ---
 
 ## print
 
-Arguments:
+参数:
 
 - **message** `string`
 
-Returns: `void`
+返回值: `void`
 
-Prints the message if `ni.vars.debug` is set to true.
+如果 `ni.vars.debug` 设置为 true ,则打印出相应的消息.
 
 ```lua
-ni.debug.print("Test") -- Won't print
+ni.vars.debug = false
+ni.debug.print("测试") -- 如果设置为 true,则不打印消息
 ni.vars.debug = true
-ni.debug.print("Test") -- Will print
+ni.debug.print("测试") -- 如果设置为 true,则打印消息
 ```
 
 ## log
 
-Arguments:
+参数:
 
 - **message** `string`
-- **error** `boolean` _optional_
+- **error** `布尔型` _可选参数_
 
-Returns: `void`
+返回值: `无`
 
-Prints the message in the console of ni's application. Error is optional, true for error message and empty or false or normal.
+将消息打印到ni应用程序的控制台.错误参数是可选的,使用true表示错误消息,使用空值、false或normal表示普通消息.
 
 ```lua
-ni.debug.log("Test")
+ni.debug.log("测试")
 ```

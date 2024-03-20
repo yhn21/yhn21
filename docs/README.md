@@ -3,9 +3,9 @@
 
 # ni (v2) Legacy
 
-<img src="_media/logo.png" alt="ni (v2)">
+<img src="docs/_media/logo.png" alt="ni (v2)">
 
-Profile Framework for **World of Warcraft** and its older expansions.
+此插件是为魔兽世界早期版本开发的辅助工具，适用于3.3.5，4.3.4，5.4.8版本
 
 ![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-squaree&logo=lua&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-squaree&logo=c%2B%2B&logoColor=white)
@@ -13,29 +13,24 @@ Profile Framework for **World of Warcraft** and its older expansions.
 
 </div>
 
-##  🛠️ How to?
+##  🛠️ 如何编写
 
-See the [Quick start](https://darhanger.github.io/ni/#/getting-started/quickstart) guide for more details.
+查看[快速开始](docs/getting-started/quickstart.md)指南了解更多相关内容。
 
-##  🪙 Features
+##  🪙 功能介绍
 
-⚡️ Wrapper for Protected Lua Functions;<br>
-⚡️ Anti Warden;<br>
-⚡️ Support for 3.3.5, 4.3.4, 5.4.8 only;<br>
-⚡️ Party/Raid Support;<br>
-⚡️ Object Manager;<br>
-⚡️ Ground Spells Support;<br>
-⚡️ Healing Engine;<br>
-⚡️ Time to Die Calculations;<br>
-⚡️ Framework for Top Tier PvE/PvP Profiles;<br>
+⚡️ 支持的版本： 3.3.5, 4.3.4, 5.4.8 <br>
+⚡️ 目标数量、血量、距离、死亡时间的判断<br>
+⚡️ 团队血量、分组、距离的判断<br>
 
-## 🖥️ Program Developer
 
-- **[Scott](https://github.com/scizzydo) or Scott#1180**
+## 📊 下载地址
 
-## 📊 Stats
+* 泥多灰中文汉化版下载地址: [![Last Release](https://img.shields.io/github/v/release/darhanger/ni?style=flat-square)](https://gitee.com/smallzyc/ni/raw/master/%E4%B8%BB%E7%A8%8B%E5%BA%8F/NI.v0.0.62.zip)
 
-* Last Stable Release: [![Last Release](https://img.shields.io/github/v/release/darhanger/ni?style=flat-square)](https://github.com/darhanger/ni/releases/tag/0.0.62)
-* Stable Release Downloads: [![GitHub Last Download](https://img.shields.io/github/downloads/darhanger/ni/0.0.62/total?style=flat-square)](https://github.com/darhanger/ni/releases/tag/0.0.62)
-* Project Downloads Total: [![GitHub All Releases](https://img.shields.io/github/downloads/darhanger/ni/total?style=flat-square)](https://github.com/darhanger/ni/releases)
-* Static code analysis grade: [![Codacy Badge](https://img.shields.io/codacy/grade/6e14e7d474454cdea9cac32b677c4912?style=flat-square)](https://app.codacy.com/gh/darhanger/ni/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+## 🖥️ 演示视频
+
+![输入图片说明](docs/_media/zhanshi.jpg)
+
+
+## [B站视频地址](http://player.bilibili.com/player.html?aid=453714133&bvid=BV1X5411i7mh&cid=1402855674&p=1)

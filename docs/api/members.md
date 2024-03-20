@@ -1,17 +1,17 @@
 # Members
 
-> All functions when used will be prepended with `ni.members`.
+> 下面使用的所有函数都要以 `ni.members`.
 
 ---
 ## Iterating with member table
-If you don't need them to be sorted by range and hp:
+如果你不需要按照距离和生命值来排序他们:
 
 ```lua
 for i = 1, #ni.members do
     ...
 end
 ```
-If you only need sorting by range:
+如果你要按照距离来排序:
 
 ```lua
 for i = 1, #ni.members.inrange("player", 40) do
@@ -19,7 +19,7 @@ for i = 1, #ni.members.inrange("player", 40) do
 end
 ```
 
-If you need to sort by range and hp:
+如果你要按照距离和生命值来排序:
 ```lua
 for i = 1, #ni.members.sort() do
     ...
@@ -28,94 +28,94 @@ end
 
 ## istank
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the unit is a tank or has the capability to tank, and false otherwise.
+如果单位是坦克,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:istank() then
-		-- The unit is tank, do stuff...
+		-- 如果目标是坦克,就执行.
 	end
 end
 ```
 
 ## ishealer
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the unit is a healer or has the capability to healer, and false otherwise.
+如果单位是治疗者,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:ishealer() then
-		-- The unit is healer, do stuff... 
+		-- 如果目标是治疗者,就执行 
 	end
 end
 ```
 
 ## isdps
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the unit is a DPS or has the capability to DPS, and false otherwise.
+如果单位是DPS,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:isdps() then
-		-- The unit is DPS, do stuff... 
+		-- 如果目标是DPS,就执行 
 	end
 end
 ```
 
 ## iscaster
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the unit is a Caster DPS or has the capability to Caster DPS, and false otherwise.
+如果单位是法术DPS或者具有法术DPS的单位,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:iscaster() then
-		-- The unit is Caster DPS, do stuff... 
+		-- 如果目标是法术DPS,就执行 
 	end
 end
 ```
 
 ## ismelee
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the unit is a Melee DPS or has the capability to Melee DPS, and false otherwise.
+如果单位是近战DPS或者具有近战DPS的单位,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:ismelee() then
-		-- The unit is Melee DPS, do stuff... 
+		-- 如果目标是近战DPS,就执行 
 	end
 end
 ```
 
 ## location
 
-Returns: `number`, `number`, `number`, `number`
+返回值: `number`, `number`, `number`, `number`
 
-Returns the current location of the unit in the game world as four separate values: x, y, z, and r (rotation).
+单位的当前位置由四个独立的值表示: x, y, z, and r (朝向).
 
 ```lua
 for i = 1, #ni.members do
 	local x, y, z, r = ni.members[i]:location()
 	if x and y and z and r then
-		-- The unit's location was successfully retrieved
+		-- 成功获取了单位的位置信息
 	end
 end
 ```
 
 ## combat
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the unit is currently in combat, and false otherwise.
+如果单位在战斗中,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
@@ -127,294 +127,294 @@ end
 
 ## aura
 
-Arguments:
+参数:
 
-- **aura** `number` or `string`
+- **aura：** `number` or `string`
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the unit has the specified aura, and false otherwise.
+如果单位拥有指定的光环效果,则返回turn,否则返回false.
 
 ```lua
 if ni.members[1]:aura(12345) then
-    -- The unit has aura ID 12345
+    -- 如果该单位有12345的光环效果,就执行
 end
 
-if ni.members[1]:aura("Arcane Intellect") then
-    -- The unit has the "Arcane Intellect" aura
+if ni.members[1]:aura("虔诚光环") then
+    -- 如果该单位有"虔诚光环"的效果,就执行
 end
 ```
 
-Note: You can use either the aura ID or the name of the aura as the argument for this function.
+注意：您可以使用光环ID或光环名称作为这个函数的参数.
 
 ## auras
-Arguments:
+参数:
 
-- **ids** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **ids** `光环名称|光环id`
+- **filter** `任何人|玩家` _可选参数_
 
-Returns: `boolean`
+参数: `布尔值`
 
-Checks if specified unit has certain buffs separated by `&&` or `||`.
+检查指定单位是否有指定的光环效果,使用 `&&` 或者 `||`进行分隔.
 
 ```lua
-if ni.members[1]:auras("63321&&Fel Armor") then
-    -- Unit has both Life Tap and Fel Armor
+if ni.members[1]:auras("63321&&虔诚光环") then
+    -- 单位同时拥有id63321和虔诚光环的光环效果
 end
 
-if ni.members[1]:auras("63321||Fel Armor", "EXACT") then
-    -- Unit has either Life Tap, or Fel Armor
+if ni.members[1]:auras("63321||虔诚光环", "EXACT") then
+    -- 单位拥有id63321或者虔诚光环的光环效果
 end
 ```
 
-Note: You can use either the buff IDs or names as the argument for this function.
+注意：您可以使用光环效果的ID或名称作为这个函数的参数.
 
 ## buffs
 
-Arguments:
+参数:
 
-- **ids** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **ids** `法术名|法术id`
+- **filter** `任何人|玩家` _可选参数_
 
-Returns: `boolean`
+参数: `布尔值`
 
-Checks if specified unit has certain buffs separated by `&&` or `||`.
+检查是否有指定的buff,使用 `&&` 或者 `||`进行分隔.
 
 ```lua
-if ni.members[1]:buffs("63321&&Fel Armor", "EXACT") then
-    -- Unit has both Life Tap and Fel Armor
+if ni.members[1]:buffs("63321 && 寒冰屏障", "EXACT") then
+    -- 单位同时拥有id63321和寒冰屏障的buff
 end
 
-if ni.members[1]:buffs("63321||Fel Armor") then
-   -- Target has either Life Tap, or Fel Armor
+if ni.members[1]:buffs("63321 || 寒冰屏障") then
+   -- 单位拥有id63321或者寒冰屏障的buff
 end
 ```
 
-Note: You can use either the buff IDs or names as the argument for this function.
+注意：您可以使用增益效果的ID或名称作为这个函数的参数.
 
 ## debuffs
 
-Arguments:
+参数:
 
-- **ids** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **ids** `法术名|法术id`
+- **filter** `任何人|玩家` _可选参数_
 
-Returns: `boolean`
+参数: `布尔值`
 
-Checks if specified unit has certain debuffs separated by `&&` or `||`.
+检查是否有指定的debuff,使用 `&&` 或者 `||`进行分隔.
 
 ```lua
-if ni.members[1]:debuffs("Faerie Fire&&Curse of Agony", "PLAYER") then
-    -- The unit has both Faerie Fire and Curse of Agony
+if ni.members[1]:debuffs("63321 & 献祭", "player") then
+    -- 单位同时拥有id63321和献祭的debuff
 end
 
-if ni.members[1]:debuffs("Faerie Fire||Curse of Agony") then
-    -- The has either Faerie Fire or Curse of Agony
+if ni.members[1]:debuffs("63321 || 献祭") then
+    -- 单位拥有id63321或者献祭的debuff
 end
 ```
 
-Note: You can use either the debuff IDs or names as the argument for this function.
+注意：您可以使用减益效果的ID或名称作为这个函数的参数.
 
 ## debufftype
 
-Type:
+类型:
 
-- **function**
+- **函数：**
 
-Arguments:
+参数:
 
-- **string** `debuff type`
+- **字符串：** `debuff 类型`
 
-Returns: `boolean`
+参数: `布尔值`
 
-Returns true or false if the member accessed has the debuff type passed.
+如果有指定的减益类型,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:debufftype("Disease") then
-		-- This member has a debuff type that is Disease on them
+		-- 这个成员身上有类型为“疾病”的减益效果
 	end
 end
 ```
-Note: This function checks for any debuffs of the specified type, regardless of their specific name or ID.
+注意：此函数检查指定类型的任何减益效果,不考虑它们的具体名称或ID.
 
 ## bufftype
 
-Type:
+类型:
 
-- **function**
+- **函数：**
 
-Arguments:
+参数:
 
-- **string** `buff type`
+- **字符串：** `buff 类型`
 
-Returns: `boolean`
+参数: `布尔值`
 
-Returns true or false if the member accessed has the debuff type passed.
+如果有指定的增益类型,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:bufftype("Magic") then
-		-- This member has a buff type that is Magic on them
+		-- 这个成员身上有类型为“魔法”的增益效果
 	end
 end
 ```
 
-Note: This function checks for any buffs of the specified type, regardless of their specific name or ID.
+注意：此函数检查指定类型的任何增益效果,不考虑它们的具体名称或ID.
 
 ## buff
 
-Type:
+类型:
 
-- **function**
+- **函数：**
 
-Arguments:
+参数:
 
-- **buff** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **增益效果** `法术名|法术id`
+- **filter** `任何人|玩家` _可选参数_
 
-Returns: `UnitBuff`
+返回值: `UnitBuff`
 
-Returns the same results from UnitBuff if they have the buff present.
+如果他们身上的增益效果与UnitBuff相同,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
-	if ni.members[i]:buff("Power Word: Shield", "PLAYER") then
-		-- This member has Power Word: Shield on them cast by the player
+	if ni.members[i]:buff("真言术：盾", "player") then
+		-- 该成员身上有玩家施放的“真言术：盾”效果
 	end
 end
 ```
 
-Note: If the `filter` argument is not specified, this function will return the first matching buff it finds, regardless of its type.
+注意：如果没有指定filter参数,这个函数将返回它找到的第一个匹配增益效果,不考虑其类型.
 
 ## debuff
 
-Type:
+类型:
 
-- **function**
+- **函数**
 
-Arguments:
+参数:
 
-- **debuff** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **debuff** `法术名|法术id`
+- **filter** `任何人|玩家` _可选参数_
 
-Returns: `UnitDebuff`
+参数: `UnitDebuff`
 
-Returns the same results from UnitDebuff if they have the debuff present.
+如果他们身上的减益效果与UnitDeBuff相同,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
-	if ni.members[i]:debuff("Weakend Soul") then
-		-- This member has Weakend Soul on them
+	if ni.members[i]:debuff("虚弱灵魂") then
+		-- 这个成员身上有虚弱灵魂效果
 	end
 end
 ```
 
-Note: If the `filter` argument is not specified, this function will return the first matching debuff it finds, regardless of its type.
+注意：如果没有指定filter参数,这个函数将返回它找到的第一个匹配减益效果,不考虑其类型.
 
 ## buffstacks
 
-Arguments:
+参数:
 
-- **buff** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **增益效果** `法术名|法术id`
+- **filter** `任何人|玩家` _可选参数_
 
 ```lua
 for i = 1, #ni.members do
-	if ni.members[i]:buffstacks("Earth Shield") < 3 then
-		-- This member has Earth Shield less then 3 stacks
+	if ni.members[i]:buffstacks("大地之盾") < 3 then
+		-- 这个成员的大地之盾少于3层
 	end
 end
 ```
 
-Note: If the `filter` argument is not specified, this function will return the first matching debuff it finds, regardless of its type.
+如果没有指定filter参数,这个函数会返回它找到的第一个匹配的减益效果,不管它的类型是什么.
 
 ## debuffstacks
 
-Arguments:
+参数:
 
-- **buff** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **减益效果** `法术名|法术id`
+- **filter** `任何人|玩家` _可选参数_
 
 ```lua
 for i = 1, #ni.members do
-	if ni.members[i]:debuffstacks("Chilled to the Bone") > 5 then
-		-- This member has Chilled to the Bone debuff mor then 5 stacks
+	if ni.members[i]:debuffstacks("冰冻之骨") > 5 then
+		-- 这个成员身上的冰冻之骨减益效果超过了5层
 	end
 end
 ```
 
-Note: If the `filter` argument is not specified, this function will return the first matching debuff it finds, regardless of its type.
+如果没有指定filter参数,这个函数会返回它找到的第一个匹配的减益效果,不管它的类型是什么.
 
 ## dispel
 
-Type:
+类型:
 
 - **variable**
 
-Returns: `boolean`
+参数: `布尔值`
 
-This is the variable that returns true or false of the member accessed if you can dispel them and they have a debuff that requires dispelling.
+如果成员有你可以驱散的减益效果,则返回turn,否则返回false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:dispel() then
-		-- This member has a debuff that can be dispelled by you
+		-- 这位成员身上有一个你可以驱散的减益效果
 	end
 end
 ```
 
 ## cast
 
-Arguments:
+参数:
 
-- **spell** `id|string`
+- **spell** `法术名|法术id`
 
-Returns: `void`
+参数: `void`
 
-Casts the specified spell on member.
+对成员施放指定的法术.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:dispel() then
-		return ni.members[i]:cast(988) -- Cast Dispel Magic on ally
+		return ni.members[i]:cast(988) -- 施放驱散魔法
 	end
 end
 
 for i = 1, #ni.members do
-	if ni.members[i]:buffstacks("Earth Shield") < 3 then
-		return ni.members[i]:cast("Earth Shield") -- Cast Earth Shield on ally
+	if ni.members[i]:buffstacks("大地之盾") < 3 then
+		return ni.members[i]:cast("大地之盾") -- 对该单位施放大地之盾
 	end
 end
 ```
 
 ## hpraw
 
-Type:
+类型:
 
 - **variable**
 
-Returns: `number`
+参数: `number`
 
-This is the variable that returns the absolute health of the member accessed.
+这是一个检测团队成员剩余生命值数值的函数.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:hpraw() < 30000 then
-		-- This member has less then 30000 health
+		-- 这个团队成员的剩余生命值小于30000
 	end
 end
 ```
 
 ## hpmax
 
-Type:
+类型:
 
 - **variable**
 
-Returns: `number`
+参数: `number`
 
-Returns the maximum health of the unit.
+这是一个检查团队成员最大生命值数值的函数.
 
 ```lua
 for i = 1, #ni.members do
@@ -425,251 +425,251 @@ end
 
 ## hp
 
-Type:
+类型:
 
 - **variable**
 
-Returns: `number`
+参数: `number`
 
-This is the variable that returns the health percentage of the member accessed.
+这是一个检查团队成员剩余生命值百分比的函数.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:hp() < 20 then
-		-- This member is below 20% health
+		-- 这个团队成员剩余生命百分比小于20%
 	end
 end
 ```
 
 ## range
 
-Arguments: None
+参数: None
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the unit is within 40 yards of the player, false otherwise.
+如果单位距离玩家40码以内,则为turn,否则为false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:range() then
-		-- Unit is within 40 yards of the player
+		-- 单位在玩家40码范围内
 	end
 end	
 ```
 
 ## los
 
-Arguments: None
+参数: None
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the player has line of sight to the unit, false otherwise.
+如果玩家对单位有视野,则为turn,否则为false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:los() then
-		-- Player has line of sight to the unit
+		-- 玩家对单位有视野
 	end
 end	
 ```
 
 ## facing
 
-Arguments: None
+参数: None
 
-Returns: `boolean`
+返回值: `布尔值`
 
-Returns true if the player is facing the unit, false otherwise.
+如果玩家面向单位,则为turn,否则为false.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:facing() then
-		-- Player is facing the unit
+		-- 玩家正面对着该单位
 	end
 end	
 ```
 
 ## valid
 
-Arguments:
+参数:
 
-- **spell** `id|string`
-- **facing** `boolean` _default: false_
-- **los** `boolean` _default: false_
+- **spell** `法术id|法术名`
+- **facing** `布尔值` _默认: false_
+- **los** `布尔值` _默认: false_
 
-Returns: `boolean`
+返回值: `布尔值`
 
-This functions ensures that a spell can be casted at specific unit. It includes checks such as:
+该函数确保可以对特定单位施放法术. 它包括如下检查:
 
-- [`los`](api/members.md#los)
-- [`facing`](api/members.md#facing)
-- `IsSpellInRange`
+- [`los（视野）`](api/members.md#los)
+- [`facing（面向）`](api/members.md#facing)
+- `IsSpellInRange（施法范围内）`
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:valid(48441, false, true) then
-		-- All of the critera to be valid
+		-- 所有的条件都是有效的
 	end
 end	
 
 for i = 1, #ni.members do
 	if ni.members[i]:valid("Power Word: Shield", false, true) then
-		-- All of the critera to be valid
+		-- 所有的条件都是有效的
 	end
 end	
 ```
 
 ## threat
 
-Type:
+类型:
 
 - **variable**
 
-Returns: `number`
+返回值: `number`
 
-This is the variable that returns the threat (number between -1 and 3) of the member accessed.
+这是一个返回被访问成员威胁值的函数（返回值数字在-1到3之间）.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:threat() == -1 then
-		-- This member is not on any mobs threat list (99% chance just out of combat)
+		-- 这位成员不在任何怪物的威胁列表上（99%的几率是刚刚结束战斗）
 	end
 end
 ```
 
 ## subgroup
 
-Type:
+类型:
 
 - **variable**
 
-Returns: `number`
+返回值: `number`
 
-This is the variable that returns subgroup number of raid party.
+这个函数用来查询小队的编号.
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i]:subgroup == 1
 	or ni.members[i]:subgroup == 2 then
-		-- Do something only for members with 1 and 2 subgroup from raid (10 ppl)
+		-- 仅对团队中1和2小队的成员执行操作
 	end
 end
 ```
 
 ## role
 
-Returns the assigned role of the unit in the group.
+返回单位在小组中分配的角色.
 
-Returns:
+返回值:
 
-- A string representing the assigned role of the unit in the group.
-- Returns an empty string if the unit has no assigned role.
+- 一个代表单位在小组中分配角色的字符串.
+- 如果该单位没有分配角色,则返回空字符串.
 
-Example:
+示例:
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i].role == "TANK" then
-		-- Do something specific for tanks
+		-- 为坦克执行特定操作
 	elseif ni.members[i].role == "HEALER"
-		-- Do something specific for healer
+		-- 为治疗者执行特定操作
 	elseif ni.members[i].role == "CASTER"
-		-- Do something specific for caster
+		-- 为法术施放者执行特定操作
 	elseif ni.members[i].role == "MELEE"
-		-- Do something specific for melee		
+		-- 为近战执行特定操作		
 	end
 end
 ```
 
 ## spec
 
-Returns the class specialization of the unit in the group.
+返回小组中单位的职业专精.
 
-Returns:
+返回值:
 
-- Returns None if the unit has no tallent builds.
+- 如果单位没有加天赋,则返回None.
 
-Example:
+示例:
 
 ```lua
 for i = 1, #ni.members do
 	if ni.members[i].spec == "Fire" then
-		-- Do something specific for mages with Fire build	
+		-- 为选择火焰天赋的法师执行特定操作	
 	end
 end
 ```
 
 ## below
 
-Arguments:
+参数:
 
 - **percent** `number`
 
-Returns: `number`
+返回值: `number`
 
-Returns the number of members below the percentage passed as the argument.
+返回小组成员中生命值百分比低于参数百分比的人数.
 
 ```lua
-local count = ni.members.below(90); --Count would then be the number of members below 90
+local count = ni.members.below(90); 
 if #count >= 3 then
-	-- Do something
+	-- 团队中生命值低于90%大于等于3个
 end
 ```
 
 ## average
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 
-Returns: `number`
+返回值: `number`
 
-Calculates the average health percentage of members within a specified distance of a unit.
+计算指定距离内小组成员的平均健康百分比.
 
 ```lua
 local avarage = ni.members.average("player", 20);
 if avarage <= 40
-	-- Avarage HP of all members in distance with player low then 40%
+	-- 如果玩家周围20码内所有成员的平均生命值低于40%
 end
 ```
 
 ## averageof
 
-Arguments:
+参数:
 
 - **count** `number`
 - **unit** `guid|token`
 - **distance** `number`
 
-Returns: `number`
+返回值: `number`
 
-The average health percentage of the specified number of members within the specified distance of the unit.
+计算指定单位指定距离内的指定数量成员的平均生命值百分比.
 
 ```lua
 local averageHealth = ni.members.averageof(5, "focus", 30) 
--- Calculates the average health of the 5 nearest members to the focus within 30 yards.
+-- 计算在焦点目标30码内最近的5个成员的平均生命值百分比.
 ```
 
 ## subgroupbelow
 
-Arguments:
+参数:
 
-- `percent` (`number`): The percentage of health below which members are considered to have low health.
-- `radius` (`number`): The maximum radius (in yards) within which to search for low health members.
-- `owngroup` (`boolean`, optional): If `true`, search only within the player's subgroup. Otherwise, search within all subgroups.
+- `percent` (`number`): 被认为健康值低的生命值百分比阈值.
+- `radius` (`number`): 搜索低生命值成员的最大半径（以码为单位）.
+- `owngroup` (`布尔值`, 可选项): 如果为真,仅在玩家自己的小队中搜索.否则,在所有小队中搜索.
 
-Returns: 
-- `near` (`number`): The number of members in the subgroup with low health.
-- `lowestMember` (`table`): A table containing information about the subgroup member with the lowest health and closest to the player. The table contains the following keys:
-    - `unit` (`string`): The name of the unit.
-    - `hp` (`number`): The health percentage of the unit.
-    - `near` (`number`): The number of other members within the specified radius that also have low health.
+返回值: 
+- `near` (`number`): 小组内低于设定百分比健康值的成员数量.
+- `lowestMember` (`table`): 包含健康值最低且离玩家最近的小组成员信息的表格.该表格包含以下键:
+    - `unit` (`string`): 单位的名称.
+    - `hp` (`number`): 单位的生命值百分比.
+    - `near` (`number`): 在指定半径内,同样健康值低的其他成员数量.
 
 ```lua
--- Search for the subgroup member with the lowest health below 20% within 10 yards.
+-- 在10码内搜索生命值低于20%的小组成员中生命值最低的成员.
 local total, lowestMember = ni.members.subgroupbelow(20, 10)
-
+-- 如果找到至少3个生命值低于20%的成员,并且最低的成员满足特定条件,则对其施放法术
 if lowest and total >= 3
 and lowest:valid(48072, false, true) then
 	spellCast(48072, lowest.unit)
@@ -677,239 +677,233 @@ and lowest:valid(48072, false, true) then
 end
 ```
 
-Note: This function searches for the lowest health member(s) in a player's subgroup and returns the number of members with low health and the one with the lowest health within a certain radius.
+注意：此函数搜索玩家小组中健康值最低的成员,并返回在一定半径内具有低健康值的成员数量以及健康值最低的成员.
 
 ## inrange
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 
-Returns: `table`
+参数: `table`
 
-Returns a table of the members that are within the distance specified of the unit specified.
+返回一个包含在指定距离内距离指定单位的所有成员信息的表格.
 
 ```lua
-local members_around_me = ni.members.inrange("player", 10); --Returns a table of all the members within 10 yards of the player
+local members_around_me = ni.members.inrange("player", 10); --返回一个表格,包含所有在玩家周围10码内的成员
 ```
 
 ## inrangebelow
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **hp** `number`
 
-Returns: `table`
+参数: `table`
 
-Returns a table of the members that are within the distance specified of the unit and are below the HP threshold passed.
+返回一个表,包含在指定单位指定距离内,并且生命值低于传入百分比的所有成员信息.
 
 ```lua
-local members_below = ni.members.inrangebelow("player", 10, 60); --Returns a table of all the members within 10 yards of the player that are below 60% health
+local members_below = ni.members.inrangebelow("player", 10, 60); --返回一个表,包含所有在玩家周围10码内并且生命值低于60%的成员
 ```
 
 ---
 
-> In addition to the main ni.members functions, ni.members itself is also a table of all the party/raid members of the unit. This is meant for iterating with the purpose of healing profiles or profiles that need access to the members. Below are the accessors, functions, and examples of this table:
+> 除了主要的 ni.members 函数之外,ni.members 本身也是一个表,包含了小队/团队中的所有成员信息.这是为了通过迭代来实现治疗配置或需要访问成员信息的配置而设计的.以下是该表的访问器、函数和示例:
 
 ## inrangewithbuff
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **buff** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **filter** `EXACT|PLAYER` _可选参数_
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of the members that are within the distance specified of the unit and also have the buff that is specified.
+返回一个表,包含在指定单位指定距离内,并且拥有指定增益效果的所有成员信息.
 
 ```lua
-local members_with_riptide = ni.members.inrangewithbuff("player", 10, "Riptide", "PLAYER"); --Returns a table of all the members within 10 yards of the player that have the buff Riptide which was cast by the player
+local members_with_riptide = ni.members.inrangewithbuff("player", 10, "真言术：盾", "player"); --返回一个表,包含所有在玩家周围10码内且拥有由玩家施放的真言术：盾增益效果的成员
 ```
 
 ## inrangewithoutbuff
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **buff** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **filter** `EXACT|PLAYER` _可选参数_
 
-Returns: `table`
+参数: `table`
 
-Returns a table of the members that are within the distance specified of the unit and also do not have the buff that is specified.
+返回一个表,包含在指定单位指定距离内,并且没有指定增益效果的所有成员信息.
 
 ```lua
-local members_without_riptide = ni.members.inrangewithoutbuff("player", 10, "Riptide"); --Returns a table of all the members within 10 yards of the player that do not have the buff Riptide
+local members_without_riptide = ni.members.inrangewithoutbuff("player", 10, "真言术：盾"); --返回一个表,包含所有在玩家周围10码内且没有真言术：盾增益效果的成员
 ```
 
 ## inrangewithdebufftype
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **str** `string`
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of the members that are within the distance specified of the unit and also have the debuff type that is specified.
+返回一个表,包含在指定单位指定距离内,并且有指定类型减益效果的所有成员信息.
 
 ```lua
-local members_with_poison = ni.members.inrangewithdebufftype("player", 10, "Poison"); --Returns a table of all the members within 10 yards of the player that have a poison debuff
+local members_with_poison = ni.members.inrangewithdebufftype("player", 10, "Poison"); --返回一个表,包含所有在玩家周围10码内且有中毒减益效果的成员
 ```
 
 ## inrangewithbufftype
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **str** `string`
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of the members that are within the distance specified of the unit and also have the buff type that is specified.
+返回一个表,包含在指定单位指定距离内,并且有指定类型增益效果的所有成员信息.
 
 ```lua
-local members_with_magic_buff = ni.members.inrangewithbufftype("player", 10, "Magic"); --Returns a table of all the members within 10 yards of the player that have a magic buff
+local members_with_magic_buff = ni.members.inrangewithbufftype("player", 10, "Magic"); --返回一个表,包含所有在玩家10码内并且有魔法类型增益效果的成员
 ```
 
 ## inrangewithbuffbelow
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **buff** `name|id`
 - **hp** `number`
-- **filter** `EXACT|PLAYER` _optional_
+- **filter** `EXACT|PLAYER` _可选参数_
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of the members that are within the distance specified of the unit, have a health percentage below or equal to `hp`, and also have the buff that is specified.
+返回一个表,包含在指定单位指定距离内,有生命值百分比低于或等于传入百分比,并且有指定增益效果的所有成员信息.
 
 ```lua
-local members_with_buff_below_50 = ni.members.inrangewithbuffbelow("player", 10, "Riptide", 50, "PLAYER"); 
--- Returns a table of all the members within 10 yards of the player with a health percentage below 
--- or equal to 50 that have the buff Riptide which was cast by the player
+local members_with_buff_below_50 = ni.members.inrangewithbuffbelow("player", 10, "真言术：盾", 50, "player"); 
+-- 返回一个表,包含所有在玩家10码内,生命值百分比低于或等于50%,且有玩家施放的真言术：盾增益效果的成员 
 ```
 
 ## inrangewithoutbuffbelow
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **buff** `name|id`
 - **hp** `number`
-- **filter** `EXACT|PLAYER` _optional_
+- **filter** `EXACT|PLAYER` _可选参数_
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of the members that are within the distance specified of the unit, have a health percentage below or equal to `hp`, and also do not have the buff that is specified.
+返回一个表,包含在指定单位指定距离内,有生命值百分比低于或等于 hp,并且没有指定增益效果的所有成员信息.
 
 ```lua
-local members_without_buff_below_50 = ni.members.inrangewithoutbuffbelow("player", 10, "Riptide", 50); 
---	Returns a table of all the members within 10 yards of the player with a health percentage below 
--- or equal to 50 that do not have the buff Riptide
+local members_without_buff_below_50 = ni.members.inrangewithoutbuffbelow("player", 10, "真言术：盾", 50); 
+-- 返回一个表,包含所有在玩家10码内,生命值百分比低于或等于50%,且没有真言术：盾增益效果的成员
 ```
 
 ## inrangewithdebuff
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **debuff** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **filter** `EXACT|PLAYER` _可选参数_
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of the members that are within the distance specified of the unit and also have the debuff that is specified.
+返回一个表,包含在指定单位指定距离内,并且有指定减益效果的所有成员信息.
 
 ```lua
-local members_with_scorch = ni.members.inrangewithdebuff("target", 10, "Scorch", "PLAYER"); 
---	Returns a table of all the members within 10 yards of the target that 
--- have the debuff Scorch which was cast by the player
+local members_with_scorch = ni.members.inrangewithdebuff("target", 10, "恐惧", "palyer"); 
+--	返回一个表,包含所有在目标10码内,且有由玩家施放的恐惧减益效果的成员
 ```
 
 ## inrangewithdebuffbelow
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **debuff** `name|id`
 - **hp** `number`
-- **filter** `EXACT|PLAYER` _optional_
+- **filter** `EXACT|PLAYER` _可选参数_
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of the members that are within the distance specified of the unit, below the hp percentage specified, and also have the debuff that is specified.
+返回一个表,包含在指定单位指定距离内,生命值百分比低于或等于传入百分比,且有指定减益效果的所有成员信息.
 
 ```lua
-local members_with_scorch_below_50 = ni.members.inrangewithdebuffbelow("target", 10, "Scorch", 50, "PLAYER"); 
---	Returns a table of all the members within 10 yards of the target that have the debuff 
--- Scorch which was cast by the player and have less than 50% health
+local members_with_scorch_below_50 = ni.members.inrangewithdebuffbelow("target", 10, "恐惧", 50, "player"); 
+-- 返回一个表,包含所有在目标10码内,有由玩家施放的恐惧减益效果且生命值低于或等于50%的成员
 ```
 
 ## inrangewithoutdebuff
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **debuff** `name|id`
-- **filter** `EXACT|PLAYER` _optional_
+- **filter** `EXACT|PLAYER` _可选参数_
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of members that are within the distance specified of the unit and do not have the debuff that is specified.
+返回一个表,包含在指定单位指定距离内,并且没有指定减益效果的所有成员信息.
 
 ```lua
-local members_without_curse = ni.members.inrangewithoutdebuff("player", 10, "Curse of Tongues", "PLAYER"); 
--- Returns a table of all the members within 10 yards of the player that 
--- do not have the Curse of Tongues debuff cast by the player
+local members_without_curse = ni.members.inrangewithoutdebuff("player", 10, "恐惧", "player"); 
+-- 返回一个表,包含所有在玩家10码内,且没有由玩家施放的恐惧减益效果的成员
 ```
 
 ## inrangewithoutdebuffbelow
 
-Arguments:
+参数:
 
 - **unit** `guid|token`
 - **distance** `number`
 - **debuff** `name|id`
 - **hp** `number`
-- **filter** `EXACT|PLAYER` _optional_
+- **filter** `EXACT|PLAYER` _可选参数_
 
-Returns: `table`
+返回值: `table`
 
-Returns a table of members that are within the distance specified of the unit, have less than or equal to the specified HP percentage, and do not have the debuff that is specified.
+返回一个表,包含在指定单位指定距离内,生命值百分比低于或等于传入百分比且没有指定减益效果的所有成员信息.
 
 ```lua
-local members_without_curse_below_50_percent_hp = ni.members.inrangewithoutdebuffbelow("player", 10, "Curse of Tongues", 50, "PLAYER"); 
--- Returns a table of all the members within 10 yards of the player that have less than or equal to 50% HP, 
--- and do not have the Curse of Tongues debuff cast by the player
+local members_without_curse_below_50_percent_hp = ni.members.inrangewithoutdebuffbelow("player", 10, "恐惧", 50, "player"); 
+-- 返回一个表,包含所有在玩家10码内,且生命值低于或等于50%,并且没有由玩家施放的恐惧减益效果的成员
 ```
 
 ## addcustom
 
-Arguments:
+参数:
 
-- **unit** `string`: the name of the unit to add as a custom member.
-- **guid** `string` _optional_: the GUID of the unit to add as a custom member. If not provided, it will be obtained using `UnitGUID(unit)`.
+- **unit** `string`: 要添加为自定义成员的单位的名称.
+- **guid** `string` _可选参数_: 要添加为自定义成员的单位的全局唯一标识符.如果未提供,将通过 `UnitGUID(unit)` 获取.
 
-This function adds a custom member to the members table. It creates a new GroupMember object with the provided unit and guid and adds it to the members table. If the custom member was successfully added, the members table is updated using the `updatemembers` function.
+这个函数用于将一个自定义成员添加到成员表中,它会创建一个带有提供的单位名称和GUID的新 `GroupMember` 对象,并将其添加到成员表中,如果自定义成员成功添加,将使用 `updatemembers` 函数更新成员表.
 
 ## removecustom
 
-Arguments:
-- **unit** `string`: the name of the unit to remove from the members table.
+参数:
+- **unit** `string`: 要从成员表中移除的单位名称.
 
-This function removes a custom member from the members table. It loops through the members table and removes the first element that matches the provided unit. It also removes the unit from the `cache` table in the `memberssetup` object. If a custom member was successfully removed, the members table is updated using the `updatemembers` function.
+这个函数用于从成员表中移除一个自定义成员,它将遍历成员表,并移除与提供的单位名称匹配的第一个元素,同时会从 `memberssetup` 对象的 `cache` 表中移除该单位,如果自定义成员成功移除,将使用 `updatemembers` 函数更新成员表.

@@ -1,132 +1,135 @@
 # Player
 
-> All functions when used will be prepended with `ni.player`.
+> 使用时,所有函数都将以 `ni.player` 为前缀.
 
-Apart from functions listed below, it's possible to call `ni.player` as a shorthand for calling any function in [Unit](api/unit.md) and passing `player` as the first argument.
+除了下面列出的函数,还可以使用 `ni.player` 作为简写,调用 [Unit](api/unit.md) 中的任何函数,并将 `player` 作为第一个参数传递.
+
 
 ```lua
-ni.player.buff("Life Tap") -- Same as calling ni.unit.buff("player", "Life Tap")
-ni.player.hp() -- Same as calling ni.unit.hp("player")
+ni.player.buff("王者祝福") -- 等同于 ni.unit.buff("player", "王者祝福")
+ni.player.hp() -- 等同于 ni.unit.hp("player")
 ```
 
 ---
 ## cancelbuff
 
-Arguments:
+参数:
 
 - **id** `id`
 
-Canceles a specific buff on the player
+取消玩家身上的特定增益效果.
 
 ```lua
 if ni.player.buff(48443) then
+--如果玩家有id48443的增益效果
 	ni.player.cancelbuff(48443)
+  --取消玩家id48443的增益效果
 end
 ```
 
 ## clickat
 
-Arguments:
+参数:
 
 - **unit** `token|guid|x,y,z|mouse`
 
-Returns: `void`
+返回值: `void`
 
-Clicks at the specific location.
+在特定位置点击.
 
 ```lua
-ni.player.clickat("target") --Clicks at the targets x/y/z
-ni.player.clickat("mouse") --Clicks at the mouses current location
+ni.player.clickat("target") --在目标的 x/y/z 位置点击
+ni.player.clickat("mouse") --在鼠标当前位置点击
 ```
 
 ## checkslots
 
-Returns: `number`
+返回值: `number`
 
-Check free slots in player invetory
+检查玩家背包中的空闲槽位
 ```lua
 if ni.player.checkslots() < 2 then
-	-- Player have less the 2 free slots
+	-- 玩家的空闲槽位少于2个
 end
 ```
 
 ## hasglyph
 
-Arguments:
+参数:
 
 - **glyph** `id`
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if a player has equipped a specific glyph.
+检查玩家是否装备了特定的雕文.
 
 ```lua
 if ni.player.hasglyphWotlk(42455) then
-  -- Player has Glyph of Conflagrate
+  -- 玩家装备了id42455的雕文
 end
 ```
 
 ## hasitem
 
-Arguments:
+参数:
 
 - **item** `id`
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if a player has a specific item.
+检查玩家是否拥有特定的物品.
 
 ```lua
 if ni.player.hasitem(51378) then
-  -- Player has item Medallion of the Horde
+  -- 玩家拥有物品id51378的物品
 end
 ```
 
 ## hasitemequipped
 
-Arguments:
+参数:
 
 - **item** `id`
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if a player has equipped a specific item.
+检查玩家是否装备了特定的物品.
 
 ```lua
 if ni.player.hasitemequipped(51378) then
-  -- Player has equipped item Medallion of the Horde
+  -- 玩家已装备物品id51378的物品
 end
 ```
 
 ## hassetequiped
 
-Arguments:
+参数:
 
 - **table** `id`
 - **pieces** `number`
 
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if a player has equipped a specific set.
+检查玩家是否装备了特定的套装.
 
 ```lua
 local t8 = {46122, 46121, 46120, 46119, 46118, 45339, 45338, 45337, 45336, 45335};
 
 if ni.player.hassetequiped(t8, 4) then
-  -- Player has equipped 4 pieces tier 8
+  -- 玩家已装备4件T8套装
 end
 ```
 
 ## interact
 
-Arguments:
+参数:
 
 - **unit** `token|guid`
 
-Returns: `void`
+返回值: `void`
 
-Interacts with the specified unit (e.g. opens a dialog with NPC, loot a container).
+与指定单位进行交互（例如,与NPC打开对话框,拾取容器）.
 
 ```lua
 ni.player.interact("target")
@@ -138,9 +141,9 @@ ni.player.interact("target")
 - **width** `number`
 - **height** `number`
 
-Returns: `string`
+返回值: `string`
 
-Uses for drowing item icon in GUI or tooltips.
+在图形用户界面（GUI）中绘制物品图标.
 
 ```lua
 	{ type = "entry", text = ni.player.itemicon(57191, 22, 22).." Heal Potion", tooltip = "Use Heal Potions (if you have) when player |cff00D700HP|r < %.",  enabled = true, value = 30, min = 20, max = 60, step = 1, width = 40, key = "healpotionuse" },
@@ -148,61 +151,61 @@ Uses for drowing item icon in GUI or tooltips.
 
 ## itemcd
 
-Arguments:
+参数:
 
 - **slot** `id`
 
-Returns: `number`
+返回值: `number`
 
-Checks if a specific inventory item is on cooldown and returns the remaining time.
+检查一个特定的库存物品是否处于冷却状态,并返回剩余的冷却时间.
 
 ```lua
 if ni.player.itemcd(41119) > 0 then
-  -- Saronite Bomb is on cooldown
+  -- 物品id41119的物品正在冷却中
 end
 ```
 
 ## itemready
 
-Arguments:
+参数:
 
 - **slot** `id`
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if a specific inventory item is ready. Player have item, its off cooldown, and can be used.
+检查一个特定的库存物品是否已经准备就绪.这意味着玩家拥有该物品,它不处于冷却状态,并且可以被使用.
 
 ```lua
 if ni.player.itemready(41119) then
-  -- Player have bomb and can use it
+  -- 玩家拥有物品id41119的物品并且能够使用它
 end
 ```
 
 ## lookat
 
-Arguments:
+参数:
 
 - **unit** `token|guid`
 - **inv** `boolean` _default: false_
 
-Returns: `void`
+返回值: `void`
 
-Looks in the direction of the unit. Can be inversed by passing `true` as second argument.
+朝向单位的方向看.可以通过将 `true` 作为第二个参数传递来实现反向朝向.
 
 ```lua
 ni.player.lookat("target")
-ni.player.lookat("target", true) --Looks away from the target
+ni.player.lookat("target", true) --朝向与目标相反的方向
 ```
 
 ## moveto
 
-Arguments:
+参数:
 
 - **unit** `token|guid|x,y,z`
 
-Returns: `void`
+返回值: `void`
 
-Moves the player to specific target or coordinates.
+将玩家移动到特定目标或坐标.
 
 ```lua
 ni.player.moveto("target")
@@ -210,93 +213,93 @@ ni.player.moveto("target")
 
 ## petcd
 
-Arguments:
+参数:
 
 - **spell** `id|name`
 
-Returns: `number`
+返回值: `number`
 
-Checks if a specific inventory item is on cooldown and returns the remaining time.
+检查宠物技能是否处于冷却时间中,并返回剩余时间.
 
 ```lua
-if ni.player.petcd("Devour Magic") > 0 then
-  -- Devour Magic is on cooldown
+if ni.player.petcd("爪击") > 0 then
+  -- 爪击处于冷却中
 end
 ```
 
 ## runtext
 
-Arguments:
+参数:
 
 - **text** `string`
 
-Returns: `void`
+返回值: `void`
 
-Runs the passed text as a macro.
+将传入的文本作为宏运行.
 
 ```lua
-ni.player.runtext("/s Hello") -- writes "Hello" to Say channel.
+ni.player.runtext("/s Hello") -- 将“Hello”写入说话频道.
 ```
 
 ## slotcastable
 
-Arguments:
+参数:
 
 - **slot** `id`
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if the players current slot is a castable spell or not.
+检查玩家的装备是否是一个可以主动施放属性,比如工程手套加速附魔,主动触发的饰品等.
 
 ```lua
 if ni.player.slotcastable(10) then
-  -- Player has a Spell on his hands (slot 10)
+  -- 玩家的手套是一个可以主动施放的装备
 end
 ```
 
 ## slotcd
 
-Arguments:
+参数:
 
 - **slot** `id`
 
-Returns: `number`
+返回值: `number`
 
-Checks if a specific equipped slot is on cooldown and returns the remaining time.
+检查玩家的装备主动施放效果是否处于冷却当中.
 
 ```lua
 if ni.player.slotcd(10) > 0 then
-  -- Gloves on-use is on cooldown
+  -- 手套的使用效果处于冷却中
 end
 
 if ni.player.slotcd(10) == 0 then
-  -- Gloves on-use is off cooldown
+  -- 手套的使用效果处于冷却完毕
 end
 ```
 
 ## slotusable
 
-Arguments:
+参数:
 
 - **slot** `id`
 
-Returns: `boolean`
+返回值: `boolean`
 
-Checks if the players current slot is a castable spell and it not on cooldown.
+检查玩家的装备是否是主动施放的装备,并且可以使用了.
 
 ```lua
 if ni.player.slotusable(10) then
-  -- Gloves ready for use
+  -- 手套是主动施放的装备且准备好可以使用了
 end
 ```
 
 ## stopmoving
 
-Arguments:
+参数:
 
-Returns: `void`
+返回值: `void`
 
-Stops all movement from the player.
+使玩家停止所有移动.
 
 ```lua
 ni.player.stopmoving()
@@ -304,75 +307,76 @@ ni.player.stopmoving()
 
 ## target
 
-Arguments:
+参数:
 
 - **unit** `token|guid`
 
-Returns: `void`
+返回值: `void`
 
-Sets the specified unit to be player's target.
+将指定的单位设置为玩家的目标.
 
 ```lua
-ni.player.target("arena2")
+ni.player.target("炸弹机器人")
+-- 将炸弹机器人设为玩家当前的目标
 ```
 
 ## useinventoryitem
 
-Arguments:
+参数:
 
 - **item** `id`
 
-Returns: `void`
+返回值: `void`
 
-Uses the item from equipped items.
+使用装备的物品.
 
 ```lua
-ni.player.useinventoryitem(10) -- Activates Gloves on-use
-ni.player.useinventoryitem(13) -- Activates First Trinket slot
+ni.player.useinventoryitem(10) -- 使用手套
+ni.player.useinventoryitem(13) -- 使用饰品（上）
 ```
 
 ## useitem
 
-Arguments:
+参数:
 
 - **item** `id|name`
 - **target** `token|guid`
 
-Returns: `void`
+返回值: `void`
 
-Uses the item from inventory. If unit is specified the item will be used on it.
+使用库存中的物品.如果指定了单位,则将物品使用在它身上.
 
 ```lua
-ni.player.useitem(36892) -- Uses Healthstone
-ni.player.useitem(36895, "focus") -- Places a Demonic Soulstone on focus
+ni.player.useitem(36895) -- 使用灵魂石
+ni.player.useitem(36895, "focus") -- 给焦点目标使用灵魂石
 ```
 
 ## movingfor
 
-Arguments:
+参数:
 
 - **duration** `number`
 
-Returns: `boolean`
+返回值: `boolean`
 
-Returns true or false if the player has been moving for the duration specified.
+如果玩家已经移动了指定的时长,则返回true或false.
 
 ```lua
 if ni.player.movingfor(2) then
-	--The player has been moving for at least 2 seconds
+	--玩家已经移动了至少2秒钟
 end
 ```
 
 ## getmovingtime
 
-Arguments:
+参数:
 
-Returns: `number`
+返回值: `number`
 
-Returns the moving time that the player has been moving for.
+返回玩家已经移动的时间.
 
 ```lua
 if ni.player.getmovingtime() > 60 then
-	--The player has been moving for more than 60 seconds
+	--玩家已经移动了超过60秒
 end
 ```

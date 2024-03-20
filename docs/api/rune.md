@@ -1,44 +1,44 @@
 # Rune
 
-> All functions when used will be prepended with `ni.rune`.
+> 所有使用的函数将以 `ni.rune` 作为前缀.
 
 ---
 
 ## available
 
-Arguments:
+参数:
 
-Returns: `number`
+返回值: `number`
 
-Calculates the number of available runes.
+计算可用的符文数量.
 
 ```lua
 if ni.rune.available() == 6 then
-  -- Player has all 6 runes available
+  -- 玩家拥有所有6个符文
 end
 ```
 
 ## deathrunes
 
-Arguments:
+参数:
 
-Returns: `number`
+返回值: `number`
 
-Calculates the number of death runes.
+计算死亡符文的数量.
 
 ```lua
 if ni.rune.deathrunes() == 4 then
-  -- Player has 4 of their runes as death runes
+  -- 玩家有4个符文是死亡符文
 end
 ```
 
 ## bloodrunecd
 
-Arguments:
+参数:
 
-Returns: `number`, `number`
+返回值: `number`, `number`
 
-Returns the number of Blood Runes on and off cooldown.
+返回冷却中和非冷却中的鲜血符文数量.
 
 ```lua
 local offcd, oncd = ni.rune.bloodrunecd()
@@ -47,11 +47,11 @@ local offcd, oncd = ni.rune.bloodrunecd()
 
 ## deathrunecd
 
-Arguments:
+参数:
 
-Returns: `number`, `number`
+返回值: `number`, `number`
 
-Returns the number of Death Runes on and off cooldown.
+返回冷却中和非冷却中的死亡符文数量.
 
 ```lua
 local offcd, oncd = ni.rune.deathrunecd()
@@ -60,11 +60,11 @@ local offcd, oncd = ni.rune.deathrunecd()
 
 ## frostrunecd
 
-Arguments:
+参数:
 
-Returns: `number`, `number`
+返回值: `number`, `number`
 
-Returns the number of Frost Runes on and off cooldown.
+返回冷却中和非冷却中的冰霜符文数量.
 
 ```lua
 local offcd, oncd = ni.rune.frostrunecd()
@@ -73,11 +73,11 @@ local offcd, oncd = ni.rune.frostrunecd()
 
 ## unholyrunecd
 
-Arguments:
+参数:
 
-Returns: `number`, `number`
+返回值: `number`, `number`
 
-Returns the number of Unholy Runes on and off cooldown.
+返回冷却中和非冷却中的邪恶符文数量.
 
 ```lua
 local offcd, oncd = ni.rune.unholyrunecd()

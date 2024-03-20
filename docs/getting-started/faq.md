@@ -1,30 +1,29 @@
-# Frequently Asked Questions
+# 常见问题解答
 
-!> Before asking questions on our [Discord Channel](https://discord.gg/xBFKJc6QRr) please read these frequently asked questions.
+!> 在提问之前,请先阅读以下常见问题解答.
 
 ---
 
-## Anti-virus flags ni as a malware - what should I do?
+## 反病毒软件将ni标记为恶意软件  我该怎么办？
 
-Major Anti-viruses will recognize ni as a malware. However that is because ni comes with injector. This is a false positive and it's safe to put ni on exclusion list.
+主流反病毒软件可能会将NI识别为恶意软件.然而,这是因为NI附带了注入器.这是一个误报,将NI加入排除列表是安全的.
 
-## One of the existing profiles doesn't work - what should I do?
+## 现有的某个配置文件不起作用  我该怎么办?
 
-Best option would be to contact the profile creator directly. They will usually hang out on ni's [Discord Channel](https://discord.gg/xBFKJc6QRr).
+最好的办法是直接联系配置文件的创建者.他们通常非常了解配置文件的情况.
 
-## How to reload profiles while the game is running?
+## 如何在游戏运行时重新加载配置文件?
 
-You can reload the profiles by running one of these slashs commands:
+你可以通过输入下列的任意一条指令,重新加载插件:
 
 ```lua
-/reload ui
 /reload
 /rl
 ```
 
-## Which text editor to use?
+## 应该使用哪款编辑器?
 
-Our recommendation is to use [Visual Studio Code](https://code.visualstudio.com/) with these Lua extensions:
+我们推荐使用Visual Studio Code并安装以下Lua扩展:
 
 - [Lua](https://marketplace.visualstudio.com/items?itemName=sumneko.lua)
 - [vscode-lua](https://marketplace.visualstudio.com/items?itemName=trixnz.vscode-lua)

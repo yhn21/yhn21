@@ -1,8 +1,8 @@
-# Quick start
+# 快速开始
 
-Assuming you already downloaded ni from [Discord Channel](https://discord.gg/xBFKJc6QRr) this introductory guide will help you get up to speed.
+如果你已经下载了NI插件 [NI泥多灰汉化版下载地址](https://gitee.com/smallzyc/nifi0.0.6.2/raw/master/NI.v0.0.62.zip) 这份入门指南将帮助你快速上手.
 
-Lets get started with the location of profiles.
+让我们从配置文件的位置开始.
 
 ```
 addon
@@ -13,13 +13,13 @@ addon
 │	└───Warlock
 ```
 
-Two folders of our interest are `Data` and folder named by the class of our character. In this guide we will create a simple profile for `Warlock`. That means we are going to focus on these two folders.
+我们感兴趣的两个文件夹是 `Data` 和以我们角色的职业命名的文件夹.在这份指南中,我们将为 `Warlock（术士）`创建一个简单的配置文件.这意味着我们将关注这两个文件夹.
 
-Our profile needs to have a name - and for this guide we will call it `Warlock_Example`.
+我们的配置文件需要有一个名字 - 对于这份指南,我们将其命名为 `Warlock_Example` .
 
-Please do the following steps:
+请按照以下步骤操作:
 
-#### 1. Create a file called `Warlock_Example.lua` inside the folder addon/Rotations/Warlock. Your folders should look like this:
+#### 1. 在文件夹 addon/Rotations/Warlock 内创建一个名为 `Warlock_Example.lua` 的文件.你的文件夹应该看起来像这样 :
 
 ```
 addon
@@ -31,9 +31,9 @@ addon
 │	│	└───Warlock_Example.lua
 ```
 
-2. Once the file is created, open it using your favourite text editor. [Our recommendation](getting-started/faq.md#which-text-editor-to-use)
+2. 创建文件后,使用你最喜欢的文本编辑器打开它. 
 
-#### 3. Copy and paste the following boilerplate code:
+#### 3. 复制并粘贴以下样板代码:
 
 ```lua
 local queue = {
@@ -49,11 +49,11 @@ local abilities = {
 ni.bootstrap.profile("Warlock_Example", queue, abilities)
 ```
 
-!> Make sure that the name of file matches the name passed to `ni.bootstrap.profile`
+!> 确保文件的名称与传递给 `ni.bootstrap.profile` 的名称匹配
 
-This is all that **ni** needs to run a profile. Presss `F1` and see if the word `Hello` is being printed to the console.
+这就是 **ni** 运行配置文件所需的全部.按 `F1` 看看控制台是否打印出了 `Hello` .
 
-#### 4. In case we would like to have a dynamic queue, multiple queues which can change in real time, we can also pass a `function`.
+#### 4. 如果我们想要有一个动态队列,可以实时变化的多个队列,我们也可以传递一个 `function` .
 
 ```lua
 local ishelloprinted = false;
@@ -87,11 +87,11 @@ end;
 
 ni.bootstrap.profile("Warlock_Example", dynamicqueue, abilities)
 ```
-!> This example work only if you make profile without `Data` files.
+!> 此示例仅在不使用 `Data` 文件的情况下工作.
 
-!> It's possible to only use one way to set the priority queue (either static or dynamic).
+!> 只能使用一种方式设置优先队列（静态或动态）.
 
-#### 5. In case we have some common functions or variables that we would like to share among multiple profiles - we can do it by creating Lua files in `Data` folder. Lets create `Data_Example.lua`.
+#### 5. 如果我们有一些通用的函数或变量想在多个配置文件之间共享 - 我们可以通过在 `Data` 文件夹中创建 Lua 文件来实现.让我们创建 `Data_Example.lua` .
 
 ```
 addon
@@ -104,14 +104,14 @@ addon
 │	│	└───Warlock_Example.lua
 ```
 
-> You can name both files in **Warlock** and **Data** however you like, they don't need to follow any convention.
+> 你可以随意命名 **Warlock** 和 **Data** 中的文件,它们不需要遵循任何约定.
 
-#### 6. Passing variables and functions between Data and Profile files can be done in two ways:
+#### 6. 在 Data 和 Profile 文件之间传递变量和函数可以通过两种方式完成:
 
-- by declaring and assigning globals (not recommended)
-- by using `data` and having a new unique namespace (`table`)
+- 通过声明和分配全局变量（不推荐）
+- 通过使用 `data` 并拥有一个新的唯一命名空间（`table`）
 
-Lets use the second way and add the following to `Rotations/Data/Data_Example.lua`.
+让我们使用第二种方式,并向 `Rotations/Data/Data_Example.lua` 中添加以下内容.
 
 ```lua
 local data = {};
@@ -123,7 +123,7 @@ end;
 return data;
 ```
 
-#### 7. Loading Data files can be done by creating a table which contains strings of file names and passing that table as 4th argument to `ni.bootstrap.rotation`.
+#### 7. 加载 Data 文件可以通过创建一个包含文件名字符串的表,并将该表作为第四个参数传递给 `ni.bootstrap.rotation` 来完成.
 
 ```lua
 local data = ni.utils.require("Data_Example");
@@ -162,5 +162,5 @@ end;
 ni.bootstrap.rotation("Warlock_Example", dynamicqueue, abilities, data)
 ```
 
-#### 8. Creating profile GUI:
-Please look at the examples [here](https://github.com/darhanger/ni/blob/main/addon/Rotations/Generic/GUIExample.lua)
+#### 8. 创建配置文件 GUI:
+请点击这里查看示例 [here](https://github.com/darhanger/ni/blob/main/addon/Rotations/Generic/GUIExample.lua)

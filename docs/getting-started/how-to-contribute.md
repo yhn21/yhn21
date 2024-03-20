@@ -1,28 +1,18 @@
-# How to contribute
+# 如何做出贡献
 
-You can contribute in one of the following ways:
+您可以通过以下几种方式进行贡献：
 
-- Impementing new core features
-- Creating and sharing profiles
+- 实现新的核心功能
+- 创建并分享配置文件
 
 ---
 
-## Impementing new core features
+## 实现新的核心功能
 
-We are trying to constatly add new features to ni, and having extra pair of hands would help.
+我们正在努力不断为NI添加新功能.
 
-## Creating and sharing profiles
+## 创建并分享配置文件
 
-Although it is possible convert old PQR profiles, we feel like PQR was fairly limited and as such those profiles are not utilizing ni's full potential.
+NI拥有强大的功能,我希望每个对该插件热爱的人,都可以参与到脚本、功能等的创作中来,使NI更加的强大、完善.
 
-Therefore we are strongly advising everyone to create profiles specficially designed for ni.
-
-> Take a look at our **Profiles** section to see what is missing.
-
-## Ni Documentation & API Reference
-
-See an issue with the documentation? Good news! It is very easy to contribute. The [Ni Website](https://darhanger.github.io/ni/) is generated from Markdown files using [Docsify](https://docsify.js.org/).
-
-If you are a developer you can follow the standard pull request process.
-
-> If you are not a developer you can use the new Edit on Github link at the top of each page.
+> 请查看 **配置文件** 了解和使用NI.

@@ -1,39 +1,39 @@
 # Generic
 
-> This is for generic functions that don't fit in the categories.
+> 适用于不符合特定分类的通用函数.
 
 ---
 
 ## delayfor
 
-Arguments:
+参数:
 
 - **delay** `number`
 - **func** `function`
 
-Returns: `bool`
+返回值: `布尔值`
 
-Delays a call for specified time on a specific function.
+延迟指定时间对特定函数调用.
 
 ```lua
 ni.delayfor(2, function()
-  ni.spell.cast("Shadow Bolt", "target")
+  ni.spell.cast("暗影箭", "target")
 end);
--- Shadow Bolt will be casted 2 seconds from now
+-- 暗影箭将延迟2秒施放.
 ```
 
 ## require
 
-Arguments:
+参数:
 
 - **filename** `string`
 
-Returns: `return from file loaded`
+返回值: `从加载的文件返回数据`
 
-Ni's version of lua's require. It's used to load files into another chunk giving access to other functions without being loaded many times as it's cached each initial load (reload will clear out the cache). The string passed for the file can be the filename without the .lua extension, or it can include the .lua extension. It will search in the Data folder for this file. Additionally, you can use absolute paths (for example C:\Some Folder\file.lua).
+Ni的require函数.它用于将文件加载到另一个代码块中,使得可以在不重复加载的情况下访问其他函数,因为每次初始加载都会被缓存（重新加载将清除缓存）.传递给文件的字符串可以是不带.lua扩展名的文件名,也可以包含.lua扩展名.它会在Data文件夹中搜索该文件.此外,您还可以使用绝对路径（例如C:\Some Folder\file.lua）.
 
 ```lua
-local data = ni.utils.require("Example"); --This will load the data file called Example.lua from the data folder into the local variable data
+local data = ni.utils.require("Example"); --这将从data文件夹加载名为Example.lua的文件,并将其存储在本地变量data中
 
-print(example.version()); --In the example file there is already a function called "version", so here it would print the version
+print(example.version()); --在示例文件中已经有一个名为"version"的函数,所以这里会打印版本号
 ```
