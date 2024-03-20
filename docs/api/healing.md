@@ -76,7 +76,7 @@ end
 	end
 ```
 
-# Tanks
+## Tanks
 
 > 所有的相关函数调用都需要在前面加上 `ni.tanks()`.
 

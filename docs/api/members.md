@@ -3,7 +3,7 @@
 > 下面使用的所有函数都要以 `ni.members`.
 
 ---
-## Iterating with member table
+## 遍历成员表
 如果你不需要按照距离和生命值来排序他们:
 
 ```lua
