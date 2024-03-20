@@ -26,7 +26,7 @@
 
 ## 📊 下载地址
 
-* 泥多灰中文汉化版下载地址: [![Last Release](https://img.shields.io/github/v/release/darhanger/ni?style=flat-square)](https://gitee.com/smallzyc/ni/raw/master/%E4%B8%BB%E7%A8%8B%E5%BA%8F/NI.v0.0.62.zip)
+* 泥多灰中文汉化版下载地址: [![Last Release](https://img.shields.io/github/v/release/darhanger/ni?style=flat-square)](https://gitee.com/smallzyc/ni/raw/main/exe/NI.v0.0.62.zip)
 
 ## 🖥️ 演示视频
 
