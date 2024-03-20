@@ -161,6 +161,3 @@ end;
 
 ni.bootstrap.rotation("Warlock_Example", dynamicqueue, abilities, data)
 ```
-
-#### 8. 创建配置文件 GUI:
-请点击这里查看示例 [here](https://github.com/darhanger/ni/blob/main/addon/Rotations/Generic/GUIExample.lua)
