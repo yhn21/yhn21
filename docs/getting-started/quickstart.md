@@ -1,6 +1,6 @@
 # 快速开始
 
-如果你已经下载了NI插件 [NI泥多灰汉化版下载地址](https://gitee.com/smallzyc/nifi0.0.6.2/raw/master/NI.v0.0.62.zip) 这份入门指南将帮助你快速上手.
+如果你已经下载了NI插件 [NI泥多灰汉化版下载地址](https://gitee.com/smallzyc/ni/raw/main/exe/NI.v0.0.62.zip) 这份入门指南将帮助你快速上手.
 
 让我们从配置文件的位置开始.
 
@@ -161,6 +161,3 @@ end;
 
 ni.bootstrap.rotation("Warlock_Example", dynamicqueue, abilities, data)
 ```
-
-#### 8. 创建配置文件 GUI:
-请点击这里查看示例 [here](https://github.com/darhanger/ni/blob/main/addon/Rotations/Generic/GUIExample.lua)

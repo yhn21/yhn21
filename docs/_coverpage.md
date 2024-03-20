@@ -4,7 +4,7 @@
 
 - 专为3.3.5、4.3.4、5.4.8版本的《魔兽世界》提供支持
 
-[Getting Started](#ni-v2-legacy)
+[开始使用](#ni-v2-legacy)
 
 ![](_media/bg.png)
 
