@@ -3,7 +3,7 @@
 
 # ni (v2) Legacy
 
-<img src="docs/_media/logo.png" alt="ni (v2)">
+<img src="https://gitee.com/smallzyc/ni/raw/main/docs/logo.png" alt="ni (v2)">
 
 此插件是为魔兽世界早期版本开发的辅助工具，适用于3.3.5，4.3.4，5.4.8版本
 
@@ -30,7 +30,7 @@
 
 ## 🖥️ 演示视频
 
-![输入图片说明](docs/_media/zhanshi.jpg)
+![输入图片说明](https://gitee.com/smallzyc/ni/raw/main/docs/_media/zhanshi.jpg)
 
 
 ## [B站视频地址](http://player.bilibili.com/player.html?aid=453714133&bvid=BV1X5411i7mh&cid=1402855674&p=1)
