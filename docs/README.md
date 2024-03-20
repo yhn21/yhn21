@@ -15,7 +15,7 @@
 
 ##  🛠️ 如何编写
 
-查看[快速开始](docs/getting-started/quickstart.md)指南了解更多相关内容。
+查看[快速开始](https://smallzyc.gitee.io/ni#/getting-started/quickstart)指南了解更多相关内容。
 
 ##  🪙 功能介绍
 
