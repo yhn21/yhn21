@@ -1,10 +1,10 @@
-- <img src="https://gitee.com/smallzyc/ni/raw/main/docs/_media/start.png" alt="Start Icon" style="vertical-align: middle;"> **开始使用**
+- <img src="https://gitee.com/smallzyc/smallzyc/raw/main/docs/_media/start.png" alt="Start Icon" style="vertical-align: middle;"> **开始使用**
 
   - [Quick start（快速开始）](getting-started/quickstart.md)
   - [How to contribute（做出贡献）](getting-started/how-to-contribute.md)
   - [FAQ（常见问题）](getting-started/faq.md)
 
-- <img src="https://gitee.com/smallzyc/ni/raw/main/docs/_media/api.png" alt="API Icon" style="vertical-align: middle;"> **Api**
+- <img src="https://gitee.com/smallzyc/smallzyc/raw/main/docs/_media/api.png" alt="API Icon" style="vertical-align: middle;"> **Api**
 
   - [Debug（调试）](api/debug.md)
   - [Generic（通用）](api/generic.md)
